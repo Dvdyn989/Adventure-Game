@@ -1,0 +1,21 @@
+h1 {
+    display: flex;
+    justify-content: center;
+}
+body {
+    background-color: #00BFFF;
+}
+button {
+    display: flex;
+    flex-direction: column;
+}
+button:hover {
+  background: red;
+}
+.sceneimg {
+  background-size: cover;
+  background-position: center;
+  min-height: 400px;
+  padding: 20px;
+  color: white; /* if background is dark */
+}
