@@ -15,28 +15,28 @@ const scenes = {
             {buttontext: "No", nextScene: "slipBreakLeg"},
     ]},
     choice: {
-        text: "You see some items at the entrance of the cave. Pick one to bring inside",
-        img: "img.jpg",
+        text: "You see three items at the entrance of the cave, pick one to bring inside.",
+        img: "https://images.emojiterra.com/google/noto-emoji/unicode-16.0/color/share/2753.jpg",
         options: [
             {buttontext: "Hammer", addItem: "Hammer", nextScene: "ending"},
             {buttontext: "Key", addItem: "Key", nextScene: "ending"},
-            {buttontext: "Torchlight", addItem: "Torchlight", nextScene: "findTreasure"},    
+            {buttontext: "Torchlight", addItem: "Torchlight", nextScene: "findTreasure"},
     ]},
     forest: {
-        text: "You reach the forest and see a village. do you explore it?",
+        text: "You reach the forest and see a village, do you explore it?",
         img: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Zm9yZXN0fGVufDB8fDB8fHww",
         options: [
         {buttontext: "Yes", nextScene: "villagerAttack"},
         {buttontext: "No", nextScene: "getLost"},
         ]},
     findTreasure: {
-        text: "You found treasure, you win!",
+        text: "You found treasure using the torchlight, you win!",
         img: "https://images.unsplash.com/photo-1691404819847-dab7d769aca7?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8dHJlYXN1cmV8ZW58MHx8MHx8fDA%3D",
         end: "win",
     },
     ending: {
-        text: "You cannot see anything in the cave. You lose!",
-        img: "img.jpg",
+        text: "It's useless as you cannot see anything in the cave, you lose!",
+        img: "https://static.vecteezy.com/system/resources/previews/016/640/975/non_2x/no-looking-flat-icon-free-vector.jpg",
         end: "lose",
     },
     slipBreakLeg: {
@@ -54,10 +54,8 @@ const scenes = {
         img: "https://images.unsplash.com/photo-1485847791529-09ed2263da0b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGxvc3R8ZW58MHx8MHx8fDA%3D",
         end: "lose",
 }};
-
-let inventory = []; //start with nothing first
 /*-------------------------------- Variables --------------------------------*/
-
+let inventory = []; //start with nothing first in inventory
 // /*------------------------ Cached Element References ------------------------*/
 const gameText = document.getElementById("scenetext"); //grab h1 element, for text displayed during scenes
 const options = document.getElementById("options"); //grab div element that contains option
@@ -71,17 +69,16 @@ options.textContent = ""; //all items in options cleared first
 sceneimg.textContent = ""; //all items in sceneimg cleared first
 
 if (scene.options){ //if scene has options, if none, show only restart button below
-scene.options.forEach(option => { //for each options in scene (scenes[scenename])
+scene.options.forEach(option => { //for each option in options in scene (scenes[scenename])
 const btn = document.createElement("button"); //create a button for each option
 btn.textContent = option.buttontext; //attach relevant buttontext to button
 btn.addEventListener("click", e => {//add event listener to button to run callback function when clicked
 //console.log(e.target); //confirmed buttons have been created and are the target
-inventoryItem(option);
+inventoryItem(option); //call inventoryItem function
 });
-//showScene(option.nextScene)});//move to next scene, run function showScene, for every option (defined above in scene.options) to move to next scene defined in Scenes object
 options.append(btn);//append btn to div element (options) in browser and for buttons to appear
-});
-}
+})};
+
 if (scene.img){ //all scenes have img
     const img = document.createElement("img"); //create image element
   img.src = scene.img; //img src from url in scene.img
@@ -90,30 +87,29 @@ if (scene.img){ //all scenes have img
   sceneimg.append(img); //append img to sceneimg (div to contain images) and for images to appear
 }
 
-if (scene.end) {//for scene end
+if (scene.end) {//for scene end, need a restart button
     const restartBtn = document.createElement("button"); //create the restart button then
     restartBtn.textContent = "Play Again"; //set restart button text as Play Again
     restartBtn.addEventListener("click", e => {//when clicked, showScene function runs to go back to start screen
     //console.log(e.target); //confirmed restart button created and is the target
-    showScene("start")}); //goes to start scene
+    showScene("start")}); //goes back to start scene
     options.append(restartBtn); //append restart button to options div so it appears
   };
 };
 
-function inventoryItem (option) {
-if(option.addItem) {
-    inventory.push(option.addItem);
-    //console.log(e); //confirmed button is target
-    //console.log(`${option.addItem} picked up!`); //confirmed item has been picked up
-    gameText.textContent = `${option.addItem} picked up!`;
-    options.textContent = "";
-   setTimeout(() => {
+function inventoryItem (option) { //parameter is option
+if(option.addItem) { //once item is selected
+    inventory.push(option.addItem); //push the item to inventory
+    //console.log(`${option.addItem} picked up!`); //confirmed correct item has been picked up when button clicked
+    gameText.textContent = `${option.addItem} picked up!`; //text to display
+    options.textContent = ""; //clear all items in options
+   setTimeout(() => { //timeout to show how long the text is to be displayed before moving to next scene
       showScene(option.nextScene);
-    }, 1500);
+    }, 1200); //1.2 seconds
   } else {
-    // if no item, just go straight to the next scene
+    // if no item since not all scenes have items, just go straight to the next scene
     showScene(option.nextScene);
-  }
-}
+  };
+};
 showScene("start"); //rmb call function
 /*----------------------------- Event Listeners -----------------------------*/
