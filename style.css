@@ -1,13 +1,14 @@
 h1 {
-    display: flex;
-    justify-content: center;
+    text-align: center; 
+    font-family: Georgia;
+    font-weight: bold;
 }
 body {
     background-color: #00BFFF;
 }
 button {
-     background-color: #007bff;
-  color: white;
+background-color: #007bff;
+  color: black;
   padding: 10px 100px;
   border: 2px solid rgb(253, 255, 250);
   border-radius: 1000px;
@@ -29,3 +30,12 @@ img {
     display: flex;
   justify-content: space-around;
 }
+.game-btn {
+    background-color: orange;
+  border-radius: 1000px;          
+  font-size: 20px;
+  padding: 10px 100px;
+  border: 2px solid rgb(253, 255, 250);
+  padding: 10px 100px;
+}
+
