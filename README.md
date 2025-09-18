@@ -1,11 +1,9 @@
 # Adventure-Game
-Adventure Game
----
 Project Brief
 ---
 MVP - Minimum Viable Product
 ---
-This game is built with HTML, CSS and JavaScript. The game is committed to Github often over the course of the project and this README.md file serves to explain the technology used, how i strutured the game and my workflow. This game needs DOM manipulation, in this case, it would be using mouse click.
+This game is built with HTML, CSS and JavaScript. The game is committed to Github often over the course of the project and this README.md file serves to explain the technology used, how i structured the game and my workflow. This game needs DOM manipulation, in this case, it would be using mouse click.
 ---
 Timeframe
 ---
@@ -13,9 +11,9 @@ Timeframe
 ---
 Technologies & Tools Used
 ---
-HTML
-CSS
-JavaScript
+HTML,
+CSS,
+JavaScript,
 Git & GitHub
 ---
 Description
